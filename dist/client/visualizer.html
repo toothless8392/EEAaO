@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+            visualizer
+        </title>
+        <style>
+            body
+            {
+                margin: 0px;
+                border: 0px;
+            }
+            #visualizer
+            {
+                width: 275px;
+                height: 300px;
+                background-image: url("images/visualizer.png");
+            }
+
+            #magnify
+            {
+                position: absolute;
+                width: 252px;
+                height: 252px;
+                left: 11px;
+                top: 34px;
+                background-color: blue;
+            }
+        </style>
+    </head>
+
+    <body>
+        <img id="visualizer" src="images/visualizer.png">
+        <canvas id="magnify"></canvas>
+    </body>
+</html>
