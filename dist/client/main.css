@@ -1,3 +1,5 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
+
 body
             {
                 margin: 0px;
@@ -34,7 +36,7 @@ body
 
             #memoPopup
             {
-                display: flex;
+                display: none;
             }
 
             #memoImg
@@ -74,7 +76,7 @@ body
             }
 #background
 {
-    background-color: #c4c4c4;
+    /* background-color: #c4c4c4; */
     position: absolute;
     left: 19px;
     top: 82px;
@@ -99,6 +101,7 @@ body
                 width: 90px;
                 height: 90px;
                 margin: 0px;
+                border: #c4c4c4;
             }
 
             #RETRY
@@ -109,6 +112,7 @@ body
                 width: 239px;
                 height: 90px;
                 margin: 0px;
+                border: #c4c4c4;
             }
 
             #NEXT
@@ -119,6 +123,7 @@ body
                 width: 239px;
                 height: 90px;
                 margin: 0px;
+                border: #c4c4c4;
             }
 
             #bagle
@@ -155,6 +160,57 @@ body
                 top: 39px;
             }
 
+.cursorPoint
+{
+    border-radius: 50%;
+    border: solid 5px white;
+    background-color: rgb(60, 60, 200);
+    width: 28px;
+    height: 28px;
+}
+#firstPoint
+{
+    position: absolute;
+    left: 896px;
+    top: 410px;
+}
+#secondPoint
+{
+    position: absolute;
+    left: 1320px;
+    top: 825px;
+}
+#thirdPoint
+{
+    position: absolute;
+    left: 1600px;
+    top: 600px;
+}
+.guideBox
+{
+    border-radius: 7px;
+    background-color: rgb(255, 253, 109);
+    width: 290px;
+    height: 80px;
+}
+#firstBox
+{
+    position: absolute;
+    left: 582px;
+    top: 386px;
+}
+#secondBox
+{
+    position: absolute;
+    left: 1006px;
+    top: 801px;
+}
+#thirdBox
+{
+    position: absolute;
+    left: 1660px;
+    top: 576px;
+}
             #secondPage
             {
                 background-color: #c4c4c4;
@@ -211,7 +267,12 @@ body
                 width: 736px;
                 height: 868px;
             }
-
+#multimapTable
+{
+    font-family:'Pretendard';
+    font-size: 20px;
+    font-weight: 500;
+}
             #multimapTable::-webkit-scrollbar
             {
                 display: none;
@@ -223,23 +284,44 @@ body
                 position: absolute;
                 left: 15px;
                 top: 206px;
-                width: 710px;
+                width: 685px;
                 height: 825px;
-                
+                margin: 0px;
             }
             #multimap::-webkit-scrollbar{
                 display: none;
             }
 
+            #multimapSelected
+            {
+                background-color: rgb(50, 100, 30);
+            }
+
             .multimapName
             {
-                width: 236px;               
+                width: 236px; 
+                background-color: white;              
             }
             .multimapImage
             {
                 width: 474px;
                 background-color: rgba(255, 255, 0, 1);
             }
+#multimapScrollBarSpace
+{
+    position: absolute;
+    margin: 0px;
+    left: 699px;
+    top: 247px;
+    width: 41px;
+    height: 744px;
+}
+#multimapScrollBar
+{
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
             
 
             #middleDiv
@@ -268,8 +350,16 @@ body
     width: 242px;
     height: 152px;
 }
+#style::-webkit-scrollbar
+{
+    display: none;
+}
 .styleRow
 {
+    font-family: "Pretendard";
+    font-size: 20px;
+    font-weight: 500;
+    align-items:center;
     display: flex;
     flex-wrap: wrap;
     width: 242px;
@@ -285,7 +375,9 @@ body
 .styleName
 {
     width: 210px;
-    height: 38px;    
+    height: 38px;
+    align-items: center;
+    display: flex;
 }
 #styleSelectedRow
 {
@@ -302,7 +394,10 @@ body
     width: 242px;
     height: 113px;
 }
-
+#color::-webkit-scrollbar
+{
+    display: none
+}
 
 
             #rightDiv
@@ -328,6 +423,7 @@ body
                 position: absolute;
                 left: 452px;
                 top: 88px;
+                border: #c4c4c4;
             }
             
             #log
@@ -396,7 +492,7 @@ body
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    width: 581px;
+    width: 589px;
     height: 380px;
     border: dashed 3px rgba(0, 0, 0, 0);
 }
@@ -405,11 +501,21 @@ body
     margin: 0px;
     width: 77px;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.verceJumperRadioBtn
+{
+    border: solid 3px rgba(239, 217, 53, 1);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
 }
 .verceJumperImg
 {
     margin: 0px;
-    width: 504px;
+    width: 512px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -417,7 +523,32 @@ body
 
 #verceJumperRowSelected
 {
-    border: dashed 3px rgba(239, 217, 53, 0);
+    border: dashed 3px rgba(239, 217, 53, 1);
+}
+
+#verceJumperScroll
+{
+    display: none;
+    position: absolute;
+    left: 628px;
+    top: 259px;
+    width: 41px;
+    height: 750px;
+}
+#verceJumperScrollSpace
+{
+    position: absolute;
+    left: 0px;
+    top: 41px;
+    width: 41px;
+    height: 668px;
+}
+#verceJumperScrollBar
+{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 41px;
 }
 
 .radioStyle

@@ -7,7 +7,7 @@ import { Face } from "three/examples/jsm/math/ConvexHull.js"
 
 const loader = new THREE.TextureLoader();
 const scene = new THREE.Scene();
-//scene.background = new THREE.Color('#C4C4C4');
+scene.background = new THREE.Color('#C4C4C4');
 let canvasWidth = document.getElementById('mainScene')?.clientWidth;
 let canvasHeight = document.getElementById('mainScene')?.clientHeight;
 const canvasLeft = 19;
@@ -54,7 +54,7 @@ const prevMouse = new THREE.Vector2();
 const plane = new THREE.PlaneGeometry(100, 50);
 const planeMaterial = new THREE.MeshBasicMaterial();
 planeMaterial.transparent = true;
-planeMaterial.opacity = 0;
+planeMaterial.opacity = 0.5;
 const screenPlane = new THREE.Mesh(plane, planeMaterial);
 scene.add(screenPlane);
 screenPlane.position.set(0, 0, 6);
@@ -128,9 +128,10 @@ function rotateBagle()
         
         for (let eye of eyesOnBagle)
         {
-            let vec = eye.position;
+            let vec = new THREE.Vector3();
+            vec.copy(eye.position);
             vec.applyAxisAngle(new THREE.Vector3(0, 0, 1), angle);
-            eye.position.set(vec.x, vec.y, vec.z);
+            eye.position.copy(vec);
             eye.rotateZ(angle);
         }
 
@@ -139,13 +140,11 @@ function rotateBagle()
 }
 
 
-let log = document.getElementById("log");
+
 
 canvas?.addEventListener("mousedown", (event) =>
 {
     isMouseDown = true;
-
-    (log as HTMLElement).innerText = `X: ${event.offsetX}, Y: ${event.offsetY}`;
 
     mouse.x = (event.clientX - (canvasLeft as number) + Math.round(window.scrollX)) / (canvasWidth as number) * 2 - 1;
     mouse.y = ((canvasTop as number) - event.clientY - Math.round(window.scrollY)) / (canvasHeight as number) * 2 + 1;
@@ -168,7 +167,20 @@ canvas?.addEventListener("mouseup", (event) =>
     // }
     if (isAttachable)
     {
-        eyesOnBagle.push(targetEye);
+        let duplicated = false;
+        for (let eye of eyesOnBagle)
+        {
+            if (targetEye === eye)
+            {
+                duplicated = true;
+                break;
+            }
+        }
+        
+        if (!duplicated)
+        {
+            eyesOnBagle.push(targetEye);
+        }
     }
 
     isMouseDown = false;
@@ -179,8 +191,6 @@ canvas?.addEventListener("mouseup", (event) =>
 
 canvas?.addEventListener("mousemove", (event) =>
 {
-    (log as HTMLElement).innerText = `X: ${window.scrollX}, Y: ${window.scrollY}`;
-
     mouse.x = (event.clientX - (canvasLeft as number) + Math.round(window.scrollX)) / (canvasWidth as number) * 2 - 1;
     mouse.y = ((canvasTop as number) - event.clientY - Math.round(window.scrollY)) / (canvasHeight as number) * 2 + 1;
 
@@ -201,6 +211,8 @@ canvas?.addEventListener("mousemove", (event) =>
         if (intersects.length >= 3)
         {
             targetEye = intersects[1].object;
+            // targetEye.position.set(point.x, point.y, 6.1);
+            console.log(targetEye.position);
             isHoldingEye = true;
             isHoldingBagle = false;
 
@@ -378,7 +390,14 @@ const nextBtn2 = document.getElementById("NEXT_SECOND");
 
 (nextBtn2 as HTMLButtonElement).addEventListener("click", (e) =>
 {
-    mainCamera.position.set(20, -30, 30);
-    mainCamera.lookAt(new THREE.Vector3(0, 0, -15));
-    //scene.background = new THREE.Color(0x000000);
-})
+    //mainCamera.position.set(20, -30, 30);
+    //mainCamera.lookAt(new THREE.Vector3(0, 0, -15));
+    scene.background = null;
+});
+
+
+/*
+_______________________________________________________________________________________________________________________________________
+MultiMap
+_______________________________________________________________________________________________________________________________________
+*/

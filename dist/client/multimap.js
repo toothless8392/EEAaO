@@ -1,3 +1,22 @@
+class MultiMap
+{
+    typo;
+    style;
+    styleIdx;
+    color;
+    colorIdx;
+
+    constructor(typo, style, styleIdx, color, colorIdx)
+    {
+        this.typo = typo;
+        this.style = style;
+        this.styleIdx = styleIdx;
+        this.color = color;
+        this.colorIdx = colorIdx;
+    }
+}
+
+
 const multimap = document.getElementById("multimapTable");
 const rows = multimap.querySelectorAll("tr");
 let selectedRow = null;
@@ -8,8 +27,10 @@ const colorMenu = document.getElementById("color");
 
 let selectedVJRow = null;
 const verceJumper = document.getElementById("verceJumper");
+const verceJumperList = [];
 
 let selectedImgSrc = "";
+let currentMultiMap = null;
 
 for (let i = 0; i < rows.length; ++i)
 {
@@ -44,9 +65,10 @@ for (let i = 0; i < rows.length; ++i)
         
         
         selectedImgSrc = defaultImgSrc(typo);
-        console.log(selectedStyle, selectedColor);
-        initStyleColor();
+        console.log(selectedStyle, selectedColor);        
         createVerceJumperRow();
+        console.log(currentMultiMap);
+        initStyleColor();
         updateImgSrc(typo);
     });
 }
@@ -78,6 +100,7 @@ function initStyleColor()
             e.currentTarget.id = "styleSelectedRow";
             selectedStyleRow = e.currentTarget;
             selectedStyle = selectedStyleRow.querySelector(".styleName").innerText;
+            currentMultiMap.style = selectedStyle;
             initColor();
             console.log(typo);
             updateImgSrc(typo);
@@ -185,6 +208,7 @@ function initColor()
             e.currentTarget.id = "styleSelectedRow";
             selectedColorRow = e.currentTarget;
             selectedColor = selectedColorRow.querySelector(".styleName").innerText;
+            currentMultiMap.color = selectedColor;
             updateImgSrc(typo);
         });
     }
@@ -212,7 +236,6 @@ function removeChildren(parent)
 }
 
 
-
 function createVerceJumperRow()
 {
     if (selectedVJRow === null)
@@ -226,9 +249,12 @@ function createVerceJumperRow()
 
         const vjImg = document.createElement("div");
         vjImg.className = "verceJumperImg";
+        
 
-        const newImg = document.createElement("img");
+        let newImg = document.createElement("img");
         newImg.src = defaultImgSrc(typo);
+        newImg.width = 200;
+        newImg.height = 200;
 
         vjImg.appendChild(newImg);
 
@@ -236,7 +262,27 @@ function createVerceJumperRow()
         newRow.appendChild(vjImg);
 
         selectedVJRow = newRow;
+        selectedVJRow.addEventListener("click", (e) =>
+        {
+            const verceJumperRows = verceJumper.children;
+            console.log(verceJumperRows);
+            let i = 0;
+            for (i = 0; i < verceJumper.children.length; ++i)
+            {
+                if (e.currentTarget === children[i])
+                {
+                    break;
+                }
+            }
+
+            currentMultiMap = verceJumperList[i];
+            updateMultiMap();
+        });
+
         verceJumper.appendChild(newRow);
+
+        currentMultiMap = defaultMultiMap(typo);
+        verceJumperList.push(currentMultiMap);
     }
     else
     {
@@ -254,6 +300,8 @@ function createVerceJumperRow()
 
         const newImg = document.createElement("img");
         newImg.src = defaultImgSrc(typo);
+        newImg.width = 200;
+        newImg.height = 200;
 
         vjImg.appendChild(newImg);
 
@@ -261,8 +309,63 @@ function createVerceJumperRow()
         newRow.appendChild(vjImg);
 
         selectedVJRow = newRow;
+        selectedVJRow.addEventListener("click", (e) =>
+        {
+            const verceJumperRows = verceJumper.children;
+            console.log(verceJumperRows);
+            let i = 0;
+            for (i = 0; i < children.length; ++i)
+            {
+                if (e.currentTarget === children[i])
+                {
+                    break;
+                }
+            }
+
+            currentMultiMap = verceJumperList[i];
+            loadMultiMap();
+        });
+
         verceJumper.appendChild(newRow);
+
+        currentMultiMap = defaultMultiMap(typo);
+        verceJumperList.push(currentMultiMap);
     }
+}
+
+function loadMultiMap()
+{
+    typo = currentMultiMap.typo;
+    initStyleColor();
+    if (selectedStyleRow !== null)
+        {
+            selectedStyleRow.id = "";
+        }
+        if (selectedColorRow !== null)
+        {
+            selectedColorRow.id = "";
+        }
+    if (currentMultiMap.typo !== "michelle")
+    {        
+        selectedStyleRow = styleMenu.children[currentMultiMap.styleIdx];
+        selectedStyleRow.id = "styleSelectedRow";
+        selectedStyle = selectedStyleRow.children[1].innerText;
+
+        selectedColorRow = colorMenu.children[currentMultiMap.colorIdx];
+        selectedColorRow.id = "styleSelectedRow";
+        selectedColor = selectedColorRow.children[1].innerText;
+    }
+    else
+    {
+        selectedStyleRow = styleMenu.children[currentMultiMap.styleIdx];
+        selectedStyleRow.id = "styleSelectedRow";
+        selectedStyle = selectedStyleRow.children[1].innerText;
+        selectedColorRow = null
+        selectedColorRow.id = "";
+        selectedColor = "";
+    }
+    
+    selectedImgSrc = getUrlFromMultiMap(currentMultiMap);
 }
 
 function typoHash(typo)
@@ -285,6 +388,43 @@ function typoHash(typo)
             return 6;
         case "michelle":
             return 7;        
+    }
+}
+
+
+function defaultMultiMap(typo)
+{
+    switch (typo)
+    {
+        case "hotdogfinger":
+            return new MultiMap(typo, "Emphasized", 2, "WHITE", 2);
+        case "rock":
+            return new MultiMap(typo, "Regular", 0, "WHITE", 1);
+        case "rules":
+            return new MultiMap(typo, "Regular", 0, "WHITE", 3);
+        case "eb":
+            return new MultiMap(typo, "Regular", 0, "WHITE", 3);
+        case "raccacoonie":
+            return new MultiMap(typo, "Regular", 0, "BLACK", 0);
+        case "charcoal":
+            return new MultiMap(typo, "Regular", 0, "BLACK", 0);
+        case "bloat":
+            return new MultiMap(typo, "Regular", 0, "WHITE", 3);
+        case "michelle":
+            return new MultiMap(typo, "Outlined", 2, null, null);
+    }
+}
+
+function getUrlFromMultiMap(_multimap)
+{
+    switch (_multimap.typo)
+    {
+        case "hotdogfinger":
+            return `typo/${_multimap.typo}/${_multimap.style}/${_multimap.color}.png`;
+        case "michelle":
+            return `typo/${_multimap.typo}/${_multimap.style}.png`;
+        default:
+            return `typo/${_mutlimap.typo}/${_multimap.color}.png`;
     }
 }
 
@@ -418,11 +558,16 @@ let colorList =
         ["BLACK", "GREEN", "RED", "YELLOW"],
         ["GREEN", "RED", "WHITE", "YELLOW"],
     ],
-    ["BLACK", "WHITE"],
-    ["BLACK", "GREEN", "RED", "WHITE"],
-    ["BLACK", "GREEN", "RED", "WHITE", "YELLOW"],
-    ["BLACK", "GREEN", "RED", "YELLOW"],
-    ["BLACK", "GREEN", "RED"],
-    ["BLACK", "GREEN", "RED", "WHITE", "YELLOW"],
-    [],
+    [["BLACK", "WHITE"]],
+    [["BLACK", "GREEN", "RED", "WHITE"]],
+    [["BLACK", "GREEN", "RED", "WHITE", "YELLOW"]],
+    [["BLACK", "GREEN", "RED", "YELLOW"]],
+    [["BLACK", "GREEN", "RED"]],
+    [["BLACK", "GREEN", "RED", "WHITE", "YELLOW"]],
+    [
+        [],
+        [],
+        [],
+        [],
+    ],
 ]

@@ -139,6 +139,7 @@ function createSaveButton()
         top: 130px;
         width: 239px;
         height: 90px;
+        border: #c4c4c4;
     `;
 
     const saveBtnImg = document.createElement("img");
@@ -193,6 +194,7 @@ const capture = async () =>
                 top: 106px;
                 width: 813px;
                 height: 1062px;
+                background-color: rgb(255, 0, 0);
             `;
             canvas.width = 813;
             canvas.height = 1062;
@@ -202,6 +204,7 @@ const capture = async () =>
             video.play();
 
             ctx.drawImage(video, 730, 106, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
+            console.log(video.videoWidth, video.videoHeight);
             stream.getVideoTracks()[0].stop();
                         
             const imgUrl = canvas.toDataURL();

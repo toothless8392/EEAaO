@@ -49,9 +49,20 @@
         
                 <button id="NEXT" type="button">
                     <img class="btn_img" src="images/nextButton.png">
-                </button>
-
-                
+                </button>                
+            </div>
+            <div id="guide">
+                <div class="cursorPoint" id="firstPoint"></div>
+                <div class="guideBox" id="firstBox">
+                    <p>
+                        드래그하여<br>
+                        베이글을 돌려보세요
+                    </p>
+                </div>
+                <div class="cursorPoint" id="secondPoint"></div>
+                <div class="guideBox" id="secondBox"></div>
+                <div class="cursorPoint" id="thirdPoint"></div>
+                <div class="guideBox" id="thirdBox"></div>
             </div>
 
             <div id="secondPage" class="modal">
@@ -64,7 +75,7 @@
                             <table id="multimapTable">
                                 <tr class="hotdogfinger">
                                     <td class="multimapName">
-                                        Hotdogfinger (4)
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Hotdogfinger (4)
                                     </td>
                                     <td class="multimapImage">
                                         <img id="hotdogImg" src="typo/hotdogfinger/regular/black.png">
@@ -72,7 +83,7 @@
                                 </tr>
                                 <tr class="rock">
                                     <td class="multimapName">
-                                        Just be a Rock
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Just be a Rock
                                     </td>
                                     <td class="multimapImage">
                                         <img id="rockImg" src="typo/rock/black.png">
@@ -80,7 +91,7 @@
                                 </tr>
                                 <tr class="rules">
                                     <td class="multimapName">
-                                        No Rules
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;No Rules
                                     </td>
                                     <td class="multimapImage">
                                         <img id="rulesImg" src="typo/rules/black.png">
@@ -88,7 +99,7 @@
                                 </tr>
                                 <tr class="eb">
                                     <td class="multimapName">
-                                        Everything Bagle
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Everything Bagle
                                     </td>
                                     <td class="multimapImage">
                                         <img id="ebImg" src="typo/eb/black.png">
@@ -96,7 +107,7 @@
                                 </tr>
                                 <tr class="raccacoonie">
                                     <td class="multimapName">
-                                        Raccacoonie
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Raccacoonie
                                     </td>
                                     <td class="multimapImage">
                                         <img id="raccacoonieImg" src="typo/raccacoonie/black.png">
@@ -104,7 +115,7 @@
                                 </tr>
                                 <tr class="charcoal">
                                     <td class="multimapName">
-                                        Charcoal
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Charcoal
                                     </td>
                                     <td class="multimapImage">
                                         <img id="charcoalImg" src="typo/charcoal/black.png">
@@ -112,7 +123,7 @@
                                 </tr>
                                 <tr class="bloat">
                                     <td class="multimapName">
-                                        Bloat
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Bloat
                                     </td>
                                     <td class="multimapImage">
                                         <img id="bloatImg" src="typo/bloat/black.png">
@@ -120,19 +131,22 @@
                                 </tr>
                                 <tr class="michelle">
                                     <td class="multimapName">
-                                        Michelle
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Michelle
                                     </td>
                                     <td class="multimapImage">
                                         <img id="michelleImg" src="typo/michelle/filled.png">
                                     </td>
                                 </tr>
                             </table>
-                        </div>                        
+                        </div>
+                        <div id="multimapScrollBarSpace">
+                            <img id="multimapScrollBar" src="images/scrollBar.png" width="41px" height="425px">
+                        </div>
                     </div>
                     <div class="item" id="middleDiv">
                         <img id="styleMenu" src="images/styleColor.png">
                         <div id="style">
-                            <div class="styleRow">
+                            <div class="styleRow".>
                                 <div class="styleCheck">
 
                                 </div>
@@ -145,7 +159,7 @@
 
                                 </div>
                                 <div class="styleName">
-                                    
+                                         
                                 </div>
                             </div>
                             <div class="styleRow">
@@ -222,19 +236,19 @@
                         </button>
                         <img id="verseJumperFrame" src="images/verceJumperFrame.png">
                         <div id="verceJumper">
-                            <div class="verceJumperRow">
-                                <div class="verceJumperRadio">
-
-                                </div>
-                                <div class="verceJumperImg">
-                                    <img src="typo/hotdogfinger/emphasized/white.png" width="90%" height="90%">                                
-                                </div>
-                            </div>
                             
+                            
+                        </div>
+                        <div id="verceJumperScroll">
+                            <img src="images/verceJumperScrollBar.png" width="41px" height="750px">
+                            <div id="verceJumperScrollSpace">
+                                <img id="verceJumperScrollBar" src="images/scrollBar.png">
+                            </div>
                         </div>
                         
                     </div>
                 </div>
+
             </div>
         </main>
             
@@ -243,7 +257,8 @@
         <script type="module" src="bundle.js"></script>
 
         <script src="button.js"></script>
-        <script src="multimap.js"></script>
-        
+        <!-- <script src="multimap.js"></script> -->
+        <script src="typo.js"></script>
+        <script src="scroll.js"></script>
     </body>
 </html>
