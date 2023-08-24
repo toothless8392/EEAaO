@@ -76,7 +76,7 @@ body
             }
 #background
 {
-    /* background-color: #c4c4c4; */
+    background-color: #c4c4c4;
     position: absolute;
     left: 19px;
     top: 82px;
@@ -188,10 +188,15 @@ body
 }
 .guideBox
 {
+    font-family: 'Pretendard';
+    font-size: 25px;
+    font-weight: 600;
     border-radius: 7px;
     background-color: rgb(255, 253, 109);
     width: 290px;
     height: 80px;
+    display: none;
+    align-items: center;    
 }
 #firstBox
 {
@@ -211,6 +216,49 @@ body
     left: 1660px;
     top: 576px;
 }
+
+@-webkit-keyframes floating1
+{
+    from { top: 460px; }
+    to { top: 470px; }
+}
+@-webkit-keyframes floating2
+{
+    from { top: 875px; }
+    to { top: 885px; }
+}
+@-webkit-keyframes floating3
+{
+    from { top: 650px; }
+    to { top: 660px; }
+}
+.cursorImg
+{
+    width: 64px;
+    height: 64px;
+}
+#firstCursor
+{
+    position: absolute;
+    left: 900px;
+    top: 465px;
+    animation: floating1 0.8s linear infinite alternate;
+}
+#secondCursor
+{
+    position: absolute;
+    left: 1324px;
+    top: 880px;
+    animation: floating2 0.8s linear infinite alternate;
+}
+#thirdCursor
+{
+    position: absolute;
+    left: 1604px;
+    top: 655px;
+    animation: floating3 0.8s linear infinite alternate;
+}
+
             #secondPage
             {
                 background-color: #c4c4c4;

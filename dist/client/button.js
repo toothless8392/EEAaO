@@ -110,10 +110,14 @@ nextBtn2.addEventListener("click", () =>
     const retryButton = document.getElementById("RETRY");
 
 
-    let buttons = document.getElementById("firstPageButtons");
+    const buttons = document.getElementById("firstPageButtons");
     buttons.parentNode.removeChild(buttons);
-    let visualizer = document.getElementById("visualizerFrame");
+
+    const visualizer = document.getElementById("visualizerFrame");
     visualizer.parentNode.removeChild(visualizer);
+    
+    const cursor = document.getElementById("guide");
+    cursor.parentNode.removeChild(cursor);
                 
     retryButton.style.left = "1702px";
     retryButton.style.top = "22px";
