@@ -54,13 +54,22 @@ const prevMouse = new THREE.Vector2();
 const plane = new THREE.PlaneGeometry(100, 50);
 const planeMaterial = new THREE.MeshBasicMaterial();
 planeMaterial.transparent = true;
-planeMaterial.opacity = 0.5;
+planeMaterial.opacity = 0;
 const screenPlane = new THREE.Mesh(plane, planeMaterial);
 scene.add(screenPlane);
 screenPlane.position.set(0, 0, 6);
-console.log(screenPlane.position);
+
 sceneMeshes.push(screenPlane);
 const SCREEN_ID = screenPlane.id;
+
+const testplane = new THREE.PlaneGeometry(30, 40);
+const testplaneMaterial = new THREE.MeshBasicMaterial();
+testplaneMaterial.transparent = true;
+testplaneMaterial.opacity = 1;
+const testscreenPlane = new THREE.Mesh(testplane, testplaneMaterial);
+scene.add(testscreenPlane);
+testscreenPlane.position.set(-30, 0, 0);
+
 
 const light = new THREE.DirectionalLight(0xFFFFFF, 3.0);
 light.position.set(5, 3, 5);
@@ -83,8 +92,15 @@ sceneMeshes.push(bagle);
 let eyesOnBagle: THREE.Object3D[] = [];
 let eyes1: THREE.Object3D[] = [];
 let eyes1ID: number[] = [];
+let eyes2: THREE.Object3D[] = [];
+let eyes2ID: number[] = [];
 
 const eye1Texture = new THREE.TextureLoader().load("images/eye1.png");
+const eye2Texture = new THREE.TextureLoader().load("images/eye2.png");
+const eye1Plane = new THREE.CircleGeometry(2.5);    
+const eye1Material = new THREE.MeshBasicMaterial({ map: eye1Texture });
+const eye2Material = new THREE.MeshBasicMaterial({ map: eye2Texture });
+const eye2Plane = new THREE.CircleGeometry(2);
 
 
 
@@ -151,7 +167,22 @@ canvas?.addEventListener("mousedown", (event) =>
     
     raycaster.setFromCamera(mouse, mainCamera);
     const intersects = raycaster.intersectObjects(sceneMeshes, false);
-    prevRotationVec.set(intersects[0].point.x, intersects[0].point.y);
+
+    const point =  intersects[0].point;
+    prevRotationVec.set(point.x, point.y);
+
+    if (intersects.length > 1 && intersects[1].object.id !== BAGLE_ID && !isHoldingEye && !isHoldingBagle)
+    {
+        targetEye = intersects[1].object;
+        isHoldingEye = true;
+    }
+    else if (intersects.length > 1 && intersects[1].object.id === BAGLE_ID && !isHoldingEye)
+    {
+        isHoldingBagle = true;
+        isHoldingEye = false;
+        isAttachable = false;
+    }
+
 });
 
 let isAttachable: boolean = false;
@@ -202,50 +233,78 @@ canvas?.addEventListener("mousemove", (event) =>
     const intersects = raycaster.intersectObjects(sceneMeshes, false);
 
     let point = intersects[0].point;
-    console.log(point);
+    // console.log(point);
     magnifyCamera.position.set(point.x, point.y, point.z + 5);
     currRotationVec.set(intersects[0].point.x, intersects[0].point.y);
-    
+
     if (isMouseDown)
     {
-        if (intersects.length >= 3)
+        
+        if (intersects.length > 1 && intersects[1].object.id === BAGLE_ID && !isHoldingEye)
         {
-            targetEye = intersects[1].object;
-            // targetEye.position.set(point.x, point.y, 6.1);
-            console.log(targetEye.position);
-            isHoldingEye = true;
-            isHoldingBagle = false;
-
-            if (intersects[intersects.length - 1].object.id === BAGLE_ID)
-            {
-                isAttachable = true;
-                bagleIntersect = intersects[intersects.length - 1];
-            }            
-        }
-        else if (intersects.length == 2)
-        {
-            if (intersects[1].object.id === BAGLE_ID)
-            {
-                isHoldingBagle = true;
-                isHoldingEye = false;
-                isAttachable = false;
-                rotateBagle();
-            }
-            else
-            {
-                isHoldingBagle = false;
-                isHoldingEye = true;
-                isAttachable = false;
-                targetEye = intersects[1].object;
-            }
+            rotateBagle();
         }
 
         if (isHoldingEye)
         {
             targetEye.position.setX(point.x);
             targetEye.position.setY(point.y);
+
+            if (intersects.length > 2)
+            {
+                for (let i = 2; i < intersects.length; ++i)
+                {
+                    if (intersects[i].object.id === BAGLE_ID)
+                    {
+                        isAttachable = true;
+                        bagleIntersect = intersects[i];
+                        break;
+                    }
+                }
+            }
         }
-    }    
+    }
+    
+    // if (isMouseDown)
+    // {
+    //     if (intersects.length >= 3)
+    //     {
+    //         targetEye = intersects[1].object;
+    //         // targetEye.position.set(point.x, point.y, 6.1);
+    //         console.log(targetEye.position);
+    //         isHoldingEye = true;
+    //         isHoldingBagle = false;
+
+    //         if (intersects[intersects.length - 1].object.id === BAGLE_ID)
+    //         {
+    //             isAttachable = true;
+    //             bagleIntersect = intersects[intersects.length - 1];
+    //         }            
+    //     }
+    //     else if (intersects.length == 2)
+    //     {
+    //         if (intersects[1].object.id === BAGLE_ID)
+    //         {
+    //             isHoldingBagle = true;
+    //             isHoldingEye = false;
+    //             isAttachable = false;
+    //             rotateBagle();
+    //         }
+    //         else
+    //         {
+    //             isHoldingBagle = false;
+    //             isHoldingEye = true;
+    //             isAttachable = false;
+    //             targetEye = intersects[1].object;
+    //         }
+    //     }
+
+    //     if (isHoldingEye)
+    //     {
+    //         targetEye.position.setX(point.x);
+    //         targetEye.position.setY(point.y);
+    //     }
+    // }    
     
     
 });
@@ -255,16 +314,16 @@ canvas?.addEventListener("mousemove", (event) =>
 // normal.transformDirection(intersects[0].object.matrixWorld);
 
 
-console.log(bagle.id);
-for(let i = 0; i < eyes1.length; ++i)
-{
-    console.log(eyes1[i].id);
-}
-
 
 canvas?.addEventListener("dblclick", () =>
 {
     bagle.rotateY(Math.PI);
+
+    for (let eye of eyesOnBagle)
+    {
+        let eyePosition = eye.position;
+        eye.position.set(eyePosition.x, eyePosition.y, -eyePosition.z);
+    }
 });
 
 window.addEventListener('resize', onWindowResize, false)
@@ -360,6 +419,10 @@ function init()
     {
         scene.remove(eyes1[i]);
     }
+    for (let i = 0; i < eyes2.length; ++i)
+    {
+        scene.remove(eyes2[i]);
+    }
     sceneMeshes = [];
     sceneMeshes.push(bagle);
     sceneMeshes.push(screenPlane);
@@ -370,19 +433,42 @@ function init()
 
     for(let i = 0; i < 5; ++i)
     {
-        let eye1Plane = new THREE.CircleGeometry(2.5);
-    
-        const eyeMaterial = new THREE.MeshBasicMaterial({ map: eye1Texture });
-        const eye1 = new THREE.Mesh(eye1Plane, eyeMaterial);
+        const eye1 = new THREE.Mesh(eye1Plane, eye1Material);
         eyes1.push(eye1);
         scene.add(eye1);
         eyes1ID.push(eye1.id);
         sceneMeshes.push(eye1);
 
-        const x = Math.random() * 30 - 40;
-        const y = Math.random() * 30 - 15;
+        let x = Math.random() * 20 - 35;
+        let y = Math.random() * 30 - 15;
+        eye1.position.set(x, y, 5.1);        
+    }
 
-        eye1.position.set(x, y, 5.1);
+    for (let i = 0; i < 2; ++i)
+    {
+        const eye2 = new THREE.Mesh(eye2Plane, eye2Material);
+        eyes2.push(eye2);
+        scene.add(eye2);
+        eyes2ID.push(eye2.id);
+        sceneMeshes.push(eye2);
+
+        let x = Math.random() * 20 - 35;
+        let y = Math.random() * 30 - 15;
+        eye2.position.set(x, y, 5.1);
+    }
+    for (let i = 0; i < 3; ++i)
+    {
+        const eye2 = new THREE.Mesh(eye2Plane, eye2Material);
+        eyes2.push(eye2);
+        scene.add(eye2);
+        eyes2ID.push(eye2.id);
+        sceneMeshes.push(eye2);
+
+        let x = Math.random() * 20 + 15;
+        let y = Math.random() * 20 - 15;
+        eye2.position.set(x, y, 5.1);
+
+        scene.add(new THREE.Mesh(eye2Plane, new THREE.MeshBasicMaterial));
     }
 }
 
