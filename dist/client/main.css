@@ -484,7 +484,7 @@ body
             #capture
             {
                 position: absolute;
-                left: 730px;
+                left: 725px;
                 top: 106px;
                 width: 813px;
                 height: 1062px;
@@ -492,13 +492,22 @@ body
             }
             #poster
             {
-                display: none;
-                position: relative;
+                display: flex;
+                position: absolute;
                 left: 0px;
                 top: 0px;
                 width: 813px;
                 height: 1062px;
             }
+#TYPO
+{
+    position: absolute;
+    left: 240px;
+    top: 650px;
+    width: 245px;
+    height: 180px;
+}
+
 
 #verceJumperTable
 {

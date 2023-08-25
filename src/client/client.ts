@@ -62,13 +62,13 @@ screenPlane.position.set(0, 0, 6);
 sceneMeshes.push(screenPlane);
 const SCREEN_ID = screenPlane.id;
 
-const testplane = new THREE.PlaneGeometry(30, 40);
-const testplaneMaterial = new THREE.MeshBasicMaterial();
-testplaneMaterial.transparent = true;
-testplaneMaterial.opacity = 1;
-const testscreenPlane = new THREE.Mesh(testplane, testplaneMaterial);
-scene.add(testscreenPlane);
-testscreenPlane.position.set(-30, 0, 0);
+// const testplane = new THREE.PlaneGeometry(30, 40);
+// const testplaneMaterial = new THREE.MeshBasicMaterial();
+// testplaneMaterial.transparent = true;
+// testplaneMaterial.opacity = 1;
+// const testscreenPlane = new THREE.Mesh(testplane, testplaneMaterial);
+// scene.add(testscreenPlane);
+// testscreenPlane.position.set(-30, 0, 0);
 
 
 const light = new THREE.DirectionalLight(0xFFFFFF, 3.0);
@@ -80,8 +80,8 @@ scene.add(light);
 
 const torus = new THREE.TorusGeometry(10, 4.5, 30, 100);
 const material = new THREE.MeshPhongMaterial();
-material.map = loader.load("images/typo_charcoal_red.png");
-//material.color = new THREE.Color(0x000000);
+material.needsUpdate = true;
+material.color = new THREE.Color(0x000000);
 material.shininess = 100;
 const bagle = new THREE.Mesh(torus, material);
 console.log(bagle.position);
@@ -468,22 +468,25 @@ function init()
         let y = Math.random() * 20 - 15;
         eye2.position.set(x, y, 5.1);
 
-        scene.add(new THREE.Mesh(eye2Plane, new THREE.MeshBasicMaterial));
+        // scene.add(new THREE.Mesh(eye2Plane, new THREE.MeshBasicMaterial));
     }
 }
 
 const nextBtn2 = document.getElementById("NEXT_SECOND");
+const posterTypo = document.getElementById("TYPO");
 
 (nextBtn2 as HTMLButtonElement).addEventListener("click", (e) =>
 {
     //mainCamera.position.set(20, -30, 30);
     //mainCamera.lookAt(new THREE.Vector3(0, 0, -15));
     scene.background = null;
+
+    //bagle.material.color = new THREE.Color(0xffffff);
+    const typoImg = loader.load((posterTypo as HTMLImageElement).src);
+
+    const texture = new THREE.MeshPhongMaterial( {map: typoImg });
+    bagle.material.needsUpdate = true;
+    bagle.material.copy(texture);
 });
 
 
-/*
-_______________________________________________________________________________________________________________________________________
-MultiMap
-_______________________________________________________________________________________________________________________________________
-*/

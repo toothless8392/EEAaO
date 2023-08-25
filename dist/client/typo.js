@@ -36,6 +36,8 @@ const styleRows = styleMenu.querySelectorAll(".styleRow");
 const colorMenu = document.getElementById("color");
 const colorRows = colorMenu.querySelectorAll(".styleRow");
 
+const posterTypo = document.getElementById("TYPO");
+
 for (let i = 0; i < styleRows.length; ++i)
 {
     styleRows[i].rowIndex = i;
@@ -256,7 +258,9 @@ function loadColor()
             verceJumperList[currentVJIdx].colorIdx = selectedColorRow.rowIndex;
 
             console.log(currentVJIdx);
-            selectedVJRow.children[1].querySelector("img").src = getImgUrl(verceJumperList[currentVJIdx]);
+            const url = getImgUrl(verceJumperList[currentVJIdx]);
+            selectedVJRow.children[1].querySelector("img").src = url;
+            posterTypo.src = url;    
         });
     }
     if (4 > colors.length)
@@ -276,7 +280,9 @@ function loadColor()
 
     console.log(currentVJIdx);
 
-    selectedVJRow.children[1].querySelector("img").src = getImgUrl(verceJumperList[currentVJIdx]);
+    const url = getImgUrl(verceJumperList[currentVJIdx]);
+    selectedVJRow.children[1].querySelector("img").src = url;
+    posterTypo.src = url;
 }
 
 function getImgUrl(typo)
