@@ -120,7 +120,7 @@ function createVerceJumperRow()
     let imgDiv = document.createElement("div");
     imgDiv.className = "verceJumperImg";
 
-
+    // bug
     let newImg = document.createElement("img");
     newImg.src = getImgUrl(verceJumperList[currentVJIdx]);
     newImg.className = `VJ${newTypo.name}`;
@@ -299,13 +299,13 @@ function getImgUrl(typo)
     switch (typo.name)
     {
         case "hotdogfinger":
-            return `./typo/hotdogfinger/${styleList[typo.nameIdx][typo.styleIdx]}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`;
+            return `../typo/hotdogfinger/${styleList[typo.nameIdx][typo.styleIdx]}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`;
 
         case "michelle":
-            return `./typo/michelle/${styleList[typo.nameIdx][typo.styleIdx]}.png`;
+            return `../typo/michelle/${styleList[typo.nameIdx][typo.styleIdx]}.png`;
 
         default:
-            return `./typo/${typo.name}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`;
+            return `../typo/${typo.name}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`;
     }
 }
 
