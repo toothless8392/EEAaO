@@ -1,38 +1,37 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
 
 body
-            {
-                margin: 0px;
-                background-color: #c4c4c4;
-                width: 2240px;   
-                height: 1260px;           
-            }
+{
+    margin: 0px;
+    background-color: #c4c4c4;
+    width: 2240px;   
+    height: 1260px;           
+}
 
-            table
-            {
-                margin: 0px;
-                border: 0px;
-                white-space: nowrap;
-            }
+table
+{
+    margin: 0px;
+    border: 0px;
+    white-space: nowrap;
+}
 
-            #mainframe
-            {
-                width: 100%;
-                height: 100%;
-            }
-
-            .modal
-            {
-                display: none; /* Hidden by default */
-                position: fixed;
-                z-index: 2;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-                background-color: rgba(0, 0, 0, 0.4);
-            }
+#mainframe
+{
+    width: 100%;
+    height: 100%;
+}
+.modal
+{
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.4);
+}
 
             #memoPopup
             {
@@ -140,8 +139,9 @@ body
 
             #bagle
             {
+                
                 width: 2201px;
-                height: 1105px;
+                height: 1000px;
                 z-index: 1;
             }
             
@@ -390,21 +390,21 @@ body
 }
             
 
-            #middleDiv
-            {
-                position: absolute;
-                left: 1000px;
-                width: 270px;
-                height: 1100px;
-            }
-            #styleMenu
-            {
-                position: absolute;
-                left: 5px;
-                top: 197px;
-                width: 254px;
-                height: 434px;
-            }
+#middleDiv
+{
+    position: absolute;
+    left: 1000px;
+    width: 270px;
+    height: 1100px;
+}
+#styleMenu
+{
+    position: absolute;
+    left: 5px;
+    top: 197px;
+    width: 254px;
+    height: 434px;
+}
 #style
 {
     display: flex;
@@ -587,6 +587,17 @@ body
     border-radius: 50%;
     width: 30px;
     height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.verceJumperRadioSelected
+{
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    background-color: rgba(239, 217, 53, 1);
+    opacity: 0;
 }
 .verceJumperImg
 {
@@ -608,7 +619,7 @@ body
     position: absolute;
     left: 628px;
     top: 259px;
-    width: 41px;
+    width: 40px;
     height: 750px;
 }
 #verceJumperScrollSpace
@@ -616,15 +627,28 @@ body
     position: absolute;
     left: 0px;
     top: 41px;
-    width: 41px;
+    width: 40px;
     height: 668px;
+    overflow-y: hidden;
 }
 #verceJumperScrollBar
 {
     position: absolute;
     left: 0px;
     top: 0px;
-    width: 41px;
+    width: 40px;
+}
+#verceJumperScrollBackground
+{
+    position: absolute;
+    left: 0px;
+    top: 41px;
+}
+#verceJumperScrollBackground2
+{
+    position: absolute;
+    left: 0px;
+    top: 372px;
 }
 
 .radioStyle

@@ -202,50 +202,64 @@ function createSaveButton()
 
 
 
-const capture = async () =>
-{
-    try
-    {
-        const stream = await navigator.mediaDevices.getDisplayMedia({ preferCurrentTab: true });
-        const video = document.createElement("video");
+// const capture = async () =>
+// {
+//     try
+//     {
+//         const stream = await navigator.mediaDevices.getDisplayMedia({ preferCurrentTab: true });
+//         const video = document.createElement("video");
 
-        video.addEventListener("loadedmetadata", () =>
-        {
-            const canvas = document.createElement("canvas");
-            const ctx = canvas.getContext("2d");
+//         video.addEventListener("loadedmetadata", () =>
+//         {
+//             const canvas = document.createElement("canvas");
+//             const ctx = canvas.getContext("2d");
 
-            canvas.style.cssText = 
-            `
-                position: absolute;
-                left: 730px;
-                top: 106px;
-                width: 813px;
-                height: 1062px;
-                background-color: rgb(255, 0, 0);
-            `;
-            canvas.width = 813;
-            canvas.height = 1062;
+//             canvas.style.cssText = 
+//             `
+//                 position: absolute;
+//                 left: 730px;
+//                 top: 106px;
+//                 width: 813px;
+//                 height: 1062px;
+//                 background-color: rgb(255, 0, 0);
+//             `;
+//             canvas.width = 813;
+//             canvas.height = 1062;
             
-            console.log(`width: ${canvas.width}, height: ${canvas.height}`);
+//             console.log(`width: ${canvas.width}, height: ${canvas.height}`);
 
-            video.play();
+//             video.play();
 
-            ctx.drawImage(video, 730, 106, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
-            console.log(video.videoWidth, video.videoHeight);
-            stream.getVideoTracks()[0].stop();
+//             ctx.drawImage(video, 730, 106, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
+//             console.log(video.videoWidth, video.videoHeight);
+//             stream.getVideoTracks()[0].stop();
                         
+//             const imgUrl = canvas.toDataURL();
+//             const downloadSrc = document.createElement("a");
+//             downloadSrc.href = imgUrl
+//             downloadSrc.download = "Everything Everywhere All at Once.png";
+//             downloadSrc.click();
+                        
+//         });
+//         video.srcObject = stream;
+//     }
+//     catch (err)
+//     {
+//         console.log(err);
+//     }
+// }
+          
+
+//saveBtn.addEventListener("click", capture);
+
+function capture()
+{
+    window.html2canvas(document.getElementById("capture")).then(canvas =>
+        {
             const imgUrl = canvas.toDataURL();
             const downloadSrc = document.createElement("a");
             downloadSrc.href = imgUrl
             downloadSrc.download = "Everything Everywhere All at Once.png";
             downloadSrc.click();
-                        
         });
-        video.srcObject = stream;
-    }
-    catch (err)
-    {
-        console.log(err);
-    }
 }
-            

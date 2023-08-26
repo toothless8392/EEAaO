@@ -112,8 +112,14 @@ function createVerceJumperRow()
     radioBtn.className = "verceJumperRadioBtn";
     radioDiv.appendChild(radioBtn);
 
+    let radioSelected = document.createElement("div");
+    radioSelected.className = "verceJumperRadioSelected";
+    radioSelected.style.opacity = "1";
+    radioBtn.appendChild(radioSelected);
+
     let imgDiv = document.createElement("div");
     imgDiv.className = "verceJumperImg";
+
 
     let newImg = document.createElement("img");
     newImg.src = getImgUrl(verceJumperList[currentVJIdx]);
@@ -128,8 +134,10 @@ function createVerceJumperRow()
     if (selectedVJRow !== null)
     {
         selectedVJRow.id = "";
+        selectedVJRow.getElementsByClassName("verceJumperRadioSelected").item(0).style.opacity = "0";
     }
     newRow.id = "verceJumperRowSelected";
+
     selectedVJRow = newRow;
 
     newRow.appendChild(radioDiv);
@@ -142,8 +150,11 @@ function createVerceJumperRow()
         currentVJIdx = e.currentTarget.rowIndex;
         
         selectedVJRow.id = "";
+        selectedVJRow.getElementsByClassName("verceJumperRadioSelected").item(0).style.opacity = "0";
+
         selectedVJRow = e.currentTarget;
-        selectedVJRow.id = "verceJumperRowSelected";   
+        selectedVJRow.id = "verceJumperRowSelected";
+        selectedVJRow.getElementsByClassName("verceJumperRadioSelected").item(0).style.opacity = "1";
         
         //console.log(verceJumperList[currentVJIdx]);
         loadStyle();
@@ -288,13 +299,13 @@ function getImgUrl(typo)
     switch (typo.name)
     {
         case "hotdogfinger":
-            return `typo/hotdogfinger/${styleList[typo.nameIdx][typo.styleIdx]}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`;
+            return `/typo/hotdogfinger/${styleList[typo.nameIdx][typo.styleIdx]}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`;
 
         case "michelle":
-            return `typo/michelle/${styleList[typo.nameIdx][typo.styleIdx]}.png`;
+            return `/typo/michelle/${styleList[typo.nameIdx][typo.styleIdx]}.png`;
 
         default:
-            return `typo/${typo.name}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`;
+            return `/typo/${typo.name}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`;
     }
 }
 
