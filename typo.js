@@ -120,7 +120,7 @@ function createVerceJumperRow()
     let imgDiv = document.createElement("div");
     imgDiv.className = "verceJumperImg";
 
-
+    // bug
     let newImg = document.createElement("img");
     newImg.src = getImgUrl(verceJumperList[currentVJIdx]);
     newImg.className = `VJ${newTypo.name}`;
@@ -306,6 +306,7 @@ function getImgUrl(typo)
 
         default:
             return `typo/${typo.name}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`.toLowerCase();
+
     }
 }
 
