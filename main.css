@@ -35,7 +35,7 @@ table
 
             #memoPopup
             {
-                display: none;
+                display: flex;
             }
 
             #memoImg
@@ -46,6 +46,7 @@ table
                 left: 624px;
                 top: 280px;
             }
+            
             #memoClose
             {
                 width: 30px;
@@ -64,6 +65,10 @@ table
                 left: 0px;
                 top: 0px;
             }
+            .memo:hover
+            {
+                cursor: pointer;
+            }
             .btn_img
             {
                 position: absolute;
@@ -72,6 +77,10 @@ table
                 margin: 0px;
                 left: 0px;
                 top: 0px;
+            }
+            .btn_img:hover
+            {
+                cursor: pointer;
             }
 #background
 {
@@ -189,6 +198,10 @@ table
     background-color: rgb(60, 60, 200);
     width: 28px;
     height: 28px;
+}
+.cursorPoint:hover
+{
+    cursor: pointer;
 }
 #firstPoint
 {

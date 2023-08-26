@@ -120,7 +120,7 @@ function createVerceJumperRow()
     let imgDiv = document.createElement("div");
     imgDiv.className = "verceJumperImg";
 
-    // bug
+
     let newImg = document.createElement("img");
     newImg.src = getImgUrl(verceJumperList[currentVJIdx]);
     newImg.className = `VJ${newTypo.name}`;
@@ -175,11 +175,13 @@ function createVerceJumperRow()
                 scrollBar.style.top = `${scrollTop}px`;
             });
         }
-        const scrollTop = Math.round(verceJumper.scrollTop * 668 / verceJumper.scrollHeight);
+        //const scrollTop = Math.round(verceJumper.scrollTop * 668 / verceJumper.scrollHeight);
         const scrollHeight = Math.round(SCROLLSPACE_HEIGHT * VERCEJUMPER_HEIGHT / verceJumper.scrollHeight);
+        const scrollTop = 668 - scrollHeight;
         // console.log(scrollHeight);
         console.log(verceJumper.clientHeight);
         console.log(verceJumper.scrollHeight);
+        verceJumper.scrollTop = verceJumper.scrollHeight - 750;
         scrollBar.style.top = `${scrollTop}px`;
         scrollBar.style.height = `${scrollHeight}px`;
     }
@@ -306,7 +308,6 @@ function getImgUrl(typo)
 
         default:
             return `typo/${typo.name}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`.toLowerCase();
-
     }
 }
 
