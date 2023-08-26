@@ -117,6 +117,7 @@ function createVerceJumperRow()
 
     let newImg = document.createElement("img");
     newImg.src = getImgUrl(verceJumperList[currentVJIdx]);
+    newImg.className = `VJ${newTypo.name}`;
 
     imgDiv.appendChild(newImg);
 
@@ -148,8 +149,8 @@ function createVerceJumperRow()
         loadStyle();
     });
 
-    console.log(verceJumper.scrollHeight);
 
+    
     if (verceJumper.scrollHeight > VERCEJUMPER_HEIGHT)
     {
         if (!scrollBarCreated)
@@ -159,16 +160,17 @@ function createVerceJumperRow()
 
             verceJumper.addEventListener("scroll", (e) =>
             {
-                const scrollTop = Math.round(verceJumper.scrollTop * VERCEJUMPER_HEIGHT / verceJumper.scrollHeight);
+                const scrollTop = Math.round(verceJumper.scrollTop * 668 / verceJumper.scrollHeight);
                 scrollBar.style.top = `${scrollTop}px`;
             });
         }
-        const scrollTop = Math.round(verceJumper.scrollTop * VERCEJUMPER_HEIGHT / verceJumper.scrollHeight);
+        const scrollTop = Math.round(verceJumper.scrollTop * 668 / verceJumper.scrollHeight);
         const scrollHeight = Math.round(SCROLLSPACE_HEIGHT * VERCEJUMPER_HEIGHT / verceJumper.scrollHeight);
-        console.log(scrollHeight);
+        // console.log(scrollHeight);
+        console.log(verceJumper.clientHeight);
+        console.log(verceJumper.scrollHeight);
         scrollBar.style.top = `${scrollTop}px`;
         scrollBar.style.height = `${scrollHeight}px`;
-        console.log(scrollBar.style.height);
     }
 }
 
@@ -192,7 +194,6 @@ function loadStyle()
         styleRows[i].children[1].innerHTML = `<p>${styles[i]}</p>`;
         styleRows[i].addEventListener("click", (e) =>
         {
-            console.log(e.currentTarget.rowIndex);
 
             if (selectedStyleRow !== null)
             {
@@ -227,7 +228,7 @@ function loadStyle()
 function loadColor()
 {
     const currentTypo = verceJumperList[currentVJIdx];
-
+    //currentTypo.colorIdx = 0;
     if (selectedColorRow !== null)
     {
         selectedColorRow.id = "";
@@ -243,7 +244,6 @@ function loadColor()
     }
 
     const colors = colorList[currentTypo.nameIdx][currentTypo.styleIdx];
-    console.log(colors.length);
     for (let i = 0; i < colors.length; ++i)
     {
         colorRows[i].children[1].innerHTML = `<p>${colors[i]}</p>`;
@@ -257,7 +257,6 @@ function loadColor()
             selectedColorRow.id = "styleSelectedRow";
             verceJumperList[currentVJIdx].colorIdx = selectedColorRow.rowIndex;
 
-            console.log(currentVJIdx);
             const url = getImgUrl(verceJumperList[currentVJIdx]);
             selectedVJRow.children[1].querySelector("img").src = url;
             posterTypo.src = url;    
@@ -278,7 +277,6 @@ function loadColor()
         colorMenu.style.overflow = "auto";
     }
 
-    console.log(currentVJIdx);
 
     const url = getImgUrl(verceJumperList[currentVJIdx]);
     selectedVJRow.children[1].querySelector("img").src = url;

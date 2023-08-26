@@ -36,7 +36,7 @@
 
 
 const multimapScrollBarSpace = document.getElementById("multimapScrollBarSpace");
-const multimapScrollBar = multimapScrollBarSpace.querySelector("img");
+const multimapScrollBar = document.getElementById("multimapScrollBar");
 
 const multimap = document.getElementById("multimap");
 

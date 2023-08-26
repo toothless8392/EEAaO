@@ -55,6 +55,28 @@ function initButtonImage_retry1()
 
 /*
 _______________________
+RETRY at third page
+_______________________
+*/
+const retryBtn2 = document.getElementById("RETRY2");
+let retryBtnImg2 = retryBtn2.querySelector("img");
+
+
+retryBtn2.addEventListener("mousedown", () =>
+{
+    retryBtnImg2.src = "images/retryPressed.png";
+});
+
+retryBtn2.addEventListener("mouseup", initButtonImage_retry2);
+retryBtn2.addEventListener("mouseleave", initButtonImage_retry2);
+
+function initButtonImage_retry2()
+{
+    retryBtnImg2.src = "images/retryButton.png";
+}
+
+/*
+_______________________
 NEXT at first page
 _______________________
 */
@@ -107,21 +129,22 @@ function initButtonImage_next2()
 nextBtn2.addEventListener("click", () =>
 {
     document.getElementById("mainframe").src = "images/thirdPage.png";
-    const retryButton = document.getElementById("RETRY");
 
 
-    const buttons = document.getElementById("firstPageButtons");
-    buttons.parentNode.removeChild(buttons);
+    memoBtn.style.display = "none";
+    retryBtn1.style.display = "none";
+    nextBtn1.style.display = "none";
 
     const visualizer = document.getElementById("visualizerFrame");
-    visualizer.parentNode.removeChild(visualizer);
+    visualizer.style.display = "none";
+    //visualizer.parentNode.removeChild(visualizer);
     
     const cursor = document.getElementById("guide");
-    cursor.parentNode.removeChild(cursor);
-                
-    retryButton.style.left = "1702px";
-    retryButton.style.top = "22px";
-    document.getElementById("mainScene").appendChild(retryButton);
+    cursor.style.display = "none";
+    //cursor.parentNode.removeChild(cursor);
+    
+    retryBtn2.style.display = "flex";
+    
 
     // Create SAVE button
     createSaveButton();

@@ -126,6 +126,18 @@ body
                 border: #c4c4c4;
             }
 
+#RETRY2
+{
+    display: none;
+    position: absolute;
+    left: 1702px;
+    top: 22px;
+    width: 239px;
+    height: 90px;
+    margin: 0px;
+    border: #c4c4c4;
+}
+
             #bagle
             {
                 width: 2201px;
@@ -305,7 +317,6 @@ body
                 top: 60px;
                 width: 740px;
                 height: 90px;
-                opacity: 0.3;
             }
             #multimapFrame
             {
@@ -367,6 +378,13 @@ body
 #multimapScrollBar
 {
     position: relative;
+    left: 0px;
+    top: 0px;
+}
+#scrollBackground
+{
+    position: absolute;
+    margin: 0px;
     left: 0px;
     top: 0px;
 }
@@ -527,6 +545,7 @@ body
     flex-wrap: wrap;
     align-content: flex-start;
     overflow-y: auto;
+    overflow-x: hidden;
     position: absolute;
     left: 37px;
     top: 259px;
@@ -564,7 +583,7 @@ body
 }
 .verceJumperRadioBtn
 {
-    border: solid 3px rgba(239, 217, 53, 1);
+    border: solid 5px rgba(239, 217, 53, 1);
     border-radius: 50%;
     width: 30px;
     height: 30px;

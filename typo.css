@@ -2,7 +2,6 @@
 {
     height: 183px;
 }
-
 #hotdogImg
 {
     position: relative;
@@ -10,23 +9,27 @@
     width: 267px;
     height: 150x;
 }
-
-#VJhotdogImg
+.VJhotdogfinger
 {
     width: 267px;
-    height: 150px;
+    height: 100%;
 }
+
 
 
 .rock
 {
     height: 105px;
 }
-
 #rockImg
 {
     position: relative;
     left: 40px;
+    width: 372px;
+    height: 80px;
+}
+.VJrock
+{
     width: 372px;
     height: 80px;
 }
@@ -35,11 +38,15 @@
 {
     height: 188px;
 }
-
 #rulesImg
 {
     position: relative;
     left: 40px;
+    width: 227px;
+    height: 180px;
+}
+.VJrules
+{
     width: 227px;
     height: 180px;
 }
@@ -48,11 +55,15 @@
 {
     height: 190px;
 }
-
 #ebImg
 {
     position: relative;
     left: 40px;
+    width: 289px;
+    height: 180px;
+}
+.VJeb
+{
     width: 289px;
     height: 180px;
 }
@@ -61,11 +72,15 @@
 {
     height: 180px;
 }
-
 #raccacoonieImg
 {
     position: relative;
     left: 40px;
+    width: 288px;
+    height: 180px;
+}
+.VJraccacoonie
+{
     width: 288px;
     height: 180px;
 }
@@ -74,34 +89,46 @@
 {
     height: 183px;
 }
-
 #charcoalImg
 {
     position: relative;
     left: 40px;
     width: 285px;
 }
+.VJcharcoal
+{
+    width: 285px;
+    height: 183px;
+}
 
 .bloat
 {
     height: 190px;
 }
-
 #bloatImg
 {
     position: relative;
     left: 40px;
     width: 295px;
 }
+.VJbloat
+{
+    width: 295px;
+    height: 190px;
+}
 
 .michelle
 {
     height: 183px;
 }
-
 #michelleImg
 {
     position: relative;
     left: 40px;
     width: 255px;
+}
+.VJmichelle
+{
+    width: 255px;
+    height: 183px;
 }
