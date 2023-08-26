@@ -299,13 +299,13 @@ function getImgUrl(typo)
     switch (typo.name)
     {
         case "hotdogfinger":
-            return `./typo/hotdogfinger/${styleList[typo.nameIdx][typo.styleIdx]}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`;
+            return `typo/hotdogfinger/${styleList[typo.nameIdx][typo.styleIdx]}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`.toLowerCase();
 
         case "michelle":
-            return `./typo/michelle/${styleList[typo.nameIdx][typo.styleIdx]}.png`;
+            return `typo/michelle/${styleList[typo.nameIdx][typo.styleIdx]}.png`.toLowerCase();
 
         default:
-            return `./typo/${typo.name}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`;
+            return `typo/${typo.name}/${colorList[typo.nameIdx][typo.styleIdx][typo.colorIdx]}.png`.toLowerCase();
     }
 }
 

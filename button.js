@@ -67,6 +67,11 @@ retryBtn2.addEventListener("mousedown", () =>
     retryBtnImg2.src = "images/retryPressed.png";
 });
 
+retryBtn2.addEventListener("click", (e) =>
+{
+    memoPopup.style.display = "flex";
+})
+
 retryBtn2.addEventListener("mouseup", initButtonImage_retry2);
 retryBtn2.addEventListener("mouseleave", initButtonImage_retry2);
 
@@ -105,7 +110,7 @@ nextBtn1.addEventListener("click", () =>
 
 /*
 _______________________
-NEXT at seond page
+NEXT at second page
 _______________________
 */
 
@@ -126,79 +131,91 @@ function initButtonImage_next2()
 }
 
 
+const firstPageButtons = document.getElementById("firstPageButtons");
+
+const dateP = document.getElementById("date");
+const noP = document.getElementById("no");
+let posterNo = 1;
+
 nextBtn2.addEventListener("click", () =>
 {
     document.getElementById("mainframe").src = "images/thirdPage.png";
 
-
-    memoBtn.style.display = "none";
-    retryBtn1.style.display = "none";
-    nextBtn1.style.display = "none";
+    firstPageButtons.style.display = "none";
 
     const visualizer = document.getElementById("visualizerFrame");
     visualizer.style.display = "none";
-    //visualizer.parentNode.removeChild(visualizer);
     
     const cursor = document.getElementById("guide");
     cursor.style.display = "none";
-    //cursor.parentNode.removeChild(cursor);
     
     retryBtn2.style.display = "flex";
     
-
-    // Create SAVE button
-    createSaveButton();
+    saveBtn.style.display = "flex";
 
                 
     document.getElementById("poster").style.display = "flex";
     secondPage.style.display = "none";
+
+
+
+    const now = new Date();
+    const year = now.getFullYear();
+    let month = now.getMonth();
+    month = (month >= 9 ? `${month + 1}` : `0${month + 1}`);
+
+    let date = now.getDate();
+    date = (date >=10 ? `${date}` : `0${date}`);
+
+    let hour = now.getHours();
+    hour = (hour >= 10 ? `${hour}` : `0${hour}`);
+
+    let minute = now.getMinutes();
+    minute = (minute >= 10 ? `${minute}` : `0${minute}`);
+
+    dateP.innerText = `${year}.${month}.${date} ${hour}:${minute}`;
+
+    console.log(dateP.innerText);
+
+    if (posterNo < 10)
+    {
+        noP.innerText = `NO . 000${posterNo}`;
+    }
+    else if (posterNo < 100)
+    {
+        noP.innerText = `NO . 00${posterNo}`;
+    }
+    else if (posterNo < 1000)
+    {
+        noP.innerText = `NO . 0${posterNo}`;
+    }
+    else
+    {
+        noP.innerText = `NO . ${posterNo}`;
+    }
+    console.log(noP.innerText);
+    posterNo++;
 });
 
-function createSaveButton()
+const saveBtn = document.getElementById("SAVE");
+const saveBtnImg = saveBtn.querySelector("img");
+
+saveBtnImg.src = "images/saveButton.png";
+saveBtn.appendChild(saveBtnImg);
+
+saveBtn.addEventListener("mousedown", () =>
 {
-    console.log("!!");
-    const saveBtn = document.createElement("button");
-    saveBtn.id = "SAVE";
-    saveBtn.style.cssText = 
-    `
-        position: absolute;
-        left: 1702px;
-        top: 130px;
-        width: 239px;
-        height: 90px;
-        border: #c4c4c4;
-    `;
-
-    const saveBtnImg = document.createElement("img");
-    saveBtnImg.style.cssText =
-    `
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        width: 239px;
-        height: 90px;
-    `;
-
+    saveBtnImg.src = "images/savePressed.png";
+})
+saveBtn.addEventListener("mouseup", () =>
+{
     saveBtnImg.src = "images/saveButton.png";
-    saveBtn.appendChild(saveBtnImg);
-
-    saveBtn.addEventListener("mousedown", () =>
-    {
-        saveBtnImg.src = "images/savePressed.png";
-    })
-    saveBtn.addEventListener("mouseup", () =>
-    {
-        saveBtnImg.src = "images/saveButton.png";
-    })
-    saveBtn.addEventListener("mouseleave", () =>
-    {
-        saveBtnImg.src = "images/saveButton.png";
-    })
-    saveBtn.addEventListener("click", capture);
-
-
-    document.getElementById("mainScene").appendChild(saveBtn);
-}
+})
+saveBtn.addEventListener("mouseleave", () =>
+{
+    saveBtnImg.src = "images/saveButton.png";
+})
+saveBtn.addEventListener("click", capture);
 
 
 
