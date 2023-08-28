@@ -87,8 +87,8 @@ for (let i = 0; i < typoRows.length; ++i)
 }
 
 const verceJumper = document.getElementById("verceJumper");
-const VERCEJUMPER_HEIGHT = 750;
-const SCROLLSPACE_HEIGHT = 668;
+const VERCEJUMPER_HEIGHT = 857;
+const SCROLLSPACE_HEIGHT = 763;
 
 let verceJumperList = [];
 let currentVJIdx = -1;
@@ -171,7 +171,7 @@ function createVerceJumperRow()
 
             verceJumper.addEventListener("scroll", (e) =>
             {
-                const scrollTop = Math.round(verceJumper.scrollTop * 668 / verceJumper.scrollHeight);
+                const scrollTop = Math.round(verceJumper.scrollTop * 763 / verceJumper.scrollHeight);
                 scrollBar.style.top = `${scrollTop}px`;
             });
         }
@@ -272,7 +272,17 @@ function loadColor()
 
             const url = getImgUrl(verceJumperList[currentVJIdx]);
             selectedVJRow.children[1].querySelector("img").src = url;
-            posterTypo.src = url;    
+            posterTypo.src = url;
+            if (1 === verceJumperList[currentVJIdx].nameIdx)
+            {
+                posterTypo.style.width = "70%";
+                posterTypo.style.height = "auto";
+            }
+            else
+            {
+                posterTypo.style.width = "auto";
+                posterTypo.style.height = "100%";
+            } 
         });
     }
     if (4 > colors.length)
@@ -294,6 +304,20 @@ function loadColor()
     const url = getImgUrl(verceJumperList[currentVJIdx]);
     selectedVJRow.children[1].querySelector("img").src = url;
     posterTypo.src = url;
+    if (1 === verceJumperList[currentVJIdx].nameIdx)
+    {
+        posterTypo.style.width = "70%";
+        posterTypo.style.height = "auto";
+    }
+    else
+    {
+        posterTypo.style.width = "auto";
+        posterTypo.style.height = "100%";
+    }
+    // console.log(posterTypo);
+    // posterTypo.clientWidth = posterTypo.clientHeight * imgRatio[verceJumperList[currentVJIdx].nameIdx];
+    // console.log(posterTypo.clientWidth, posterTypo.clientHeight);
+    // console.log(posterTypo.style.width, posterTypo.style.height);
 }
 
 function getImgUrl(typo)
@@ -333,6 +357,46 @@ function getDefaultMultiMap(typoName)
             return new Typo(typoName, 7,"Outlined", 2, null, null);
     }
 }
+
+const retryButton2 = document.getElementById("RETRY2");
+retryButton2.addEventListener("click", (e) =>
+{
+    verceJumperList.length = 0;
+    scrollBarCreated = false;
+    currentVJIdx = -1;
+    currentTypo = null;
+
+    if (selectedTypoRow !== null)
+    {
+        let tds = selectedTypoRow.querySelectorAll("td");
+        tds[0].style.backgroundColor = "#FFFFFF";
+        tds[1].style.backgroundColor = "#FFFF00";
+
+        selectedTypoRow = null;
+    }
+
+    if (selectedVJRow !== null)
+    {
+        selectedVJRow.id = "";
+        selectedVJRow = null;
+    }
+    if (selectedStyleRow !== null)
+    {
+        selectedStyleRow.id = "";
+        selectedStyleRow = null;
+    }
+    if (selectedColorRow !== null)
+    {
+        selectedColorRow.id = "";
+        selectedColorRow = null;
+    }
+    selectedImgUrl = "";
+    
+    while (verceJumper.firstChild)
+    {
+        verceJumper.removeChild(verceJumper.lastChild);
+    }
+})
 
 const typoList =
 [
@@ -378,3 +442,15 @@ const colorList =
         [],
     ],
 ]
+
+const imgRatio = 
+[
+    1.78,
+    4.67,
+    1.26,
+    1.60,
+    1.60,
+    1.56,
+    1.55,
+    1.39
+];

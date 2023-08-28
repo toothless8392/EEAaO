@@ -237,14 +237,14 @@ const capture = async () =>
                 height: 1062px;
                 background-color: rgb(255, 0, 0);
             `;
-            canvas.width = 813;
-            canvas.height = 1062;
+            canvas.width = 929;
+            canvas.height = 1214;
             
             console.log(`width: ${canvas.width}, height: ${canvas.height}`);
 
             video.play();
 
-            ctx.drawImage(video, 730, 106, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(video, 829, 121, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
             console.log(video.videoWidth, video.videoHeight);
             stream.getVideoTracks()[0].stop();
                         
