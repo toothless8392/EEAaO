@@ -396,6 +396,15 @@ retryButton2.addEventListener("click", (e) =>
     {
         verceJumper.removeChild(verceJumper.lastChild);
     }
+
+    for (let i = 0; i < styleRows.length; ++i)
+    {
+        styleRows.item(i).children[1].innerHTML = "";
+    }
+    for (let i = 0; i < colorRows.length; ++i)
+    {
+        colorRows.item(i).children[1].innerHTML = "";
+    }
 })
 
 const typoList =
